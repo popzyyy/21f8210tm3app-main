@@ -1,0 +1,11 @@
+{% block body_block %}
+    <h1>Delete {{ match.pk }}?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="w3-button w3-round w3-red" value="Delete">
+        <a href="{% url 'application:match_list' pk=match.pk %} ">Cancel</a>
+    </form>
+
+{% endblock %}
+

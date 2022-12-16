@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+        poop {
+          position: absolute;
+          left: -50px;
+          width: 20%;
+          height: 20%;
+          padding: 60px;
+        }
+</style>
+
+    <div style="background-color: #2a2a2a2a; padding: 10px; margin-bottom: 20px">
+
+
+    <poop><img src="{% static "BIGBALLS.png" %}" alt="balls"/></poop>
+            {% if user.is_authenticated %}
+
+                <h1 style="color: #0a0a0a;">Welcome to the Missouri Soccer Tournament Home {{ user.username }}!</h1>
+
+            {% else %}
+                    <h1>Missouri Soccer Tournament Home</h1>
+
+            {% endif %}
+    </div>
+            <div class="contentboxes">
+                <div class="links">
+                    <div class="thumbnail">
+                        <div class="boxtitles">
+                            <h2>Matches</h2>
+                            <p><a class="w3-button w3-round w3-green" href="{% url 'application:match_list' %}"
+                                                  role="button">Go &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <div class="boxtitles">
+                        <h2>Teams</h2>
+                        <p><a class="w3-button w3-round w3-green" href="{% url 'application:team_list' %}"
+                                                  role="button">Go &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <div class="boxtitles">
+                        <h2>Players</h2>
+                        <p><a class="w3-button w3-round w3-green" href="{% url 'application:player_list' %}" role="button">Go &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

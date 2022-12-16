@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+{% block content %}
+
+    <div style="background-color: #2a2a2a2a; padding: 10px;">
+        <h1>{{request.user}}'s Team</h1>
+    </div>
+    <div style="margin-bottom: 10px">
+
+    </div>
+{% for team in teams %}
+    <button type="button" class="collapsible" style="text-align: center; font-size: 20px">{{ team.name}}</button>
+    <div class="collapsiblecontent">
+        <p>
+            Team ID: {{team.id}} <br>
+            Name: {{ team.name }} <br>
+            School: {{team.school}} <br>
+            Coach: {{team.coach}} <br>
+            Coach Email: {{ team.coach_email }} <br>
+            Coach Phone: {{ team.coach_phone}} <br>
+
+            <a href="{% url 'application:player_by_team_list' %}" class="w3-button w3-round w3-indigo">View Players</a>
+
+
+
+        </p>
+        {% if user.is_superuser or request.user|has_group:"Coach" %}
+            <a href="{% url 'application:team_edit' pk=team.pk %}" class="w3-button w3-round w3-orange">Edit</a>
+
+            {% endif %}
+     </div>
+{% endfor %}
+
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+{% endblock %}
+   

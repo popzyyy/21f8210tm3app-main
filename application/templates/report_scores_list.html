@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div style="background-color: #2a2a2a2a; padding: 10px;">
+        <h1>Report Your Match!</h1>
+        <h3>Enter a Match ID or Search for a Match.</h3>
+    </div>
+   <div class="row">
+    <div class="col-sm-1.25">
+          <div class="container text-center" style="padding-top: 3%;">
+            <div class="card">
+                  <div class="cardbody">
+
+
+                 <h3 class="card-title">Search for Match ID</h3>
+                        <p class="card-text">Need to find the ID by search? Click here!</p>
+                      <hr>
+                           <br>
+                       <a href="{% url 'application:report_scores_by_search' %}" class="w3-button w3-round w3-green">Go &raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+   </div>
+
+{% endblock %}

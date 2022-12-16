@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div style="background-color: #2a2a2a2a; padding: 10px;">
+        <h1>Stats</h1>
+    </div>
+        <div style="margin-bottom: 10px">
+
+    </div>
+
+{% for records in teams %}
+
+    <button type="button" class="collapsible" style="text-align: center; font-size: 20px">
+        {{records.name}}
+    </button>
+
+    <div class="collapsiblecontent">
+        <p>
+
+            {% for queryset in queryset %}
+            Record:{{ wins }} Wins
+            <br>
+                {% endfor %}
+            Player Count: {{ records.PLAYERS }}
+            <br>
+            Players: {{ records.first_name }}
+            <br>
+            Coach: {{ records.coach }}
+            <br>
+
+
+
+
+
+        </p>
+    </div>
+
+
+{% endfor %}
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>Edit Match</h1>
+    <form method="POST" class="match-form">{% csrf_token %}
+         {{ form|crispy }}
+        <button type="submit" class="w3-button w3-round w3-blue">Update</button>
+    </form>
+{% endblock %}
+   

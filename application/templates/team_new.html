@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>Add a Team</h1>
+    <form method="POST" class="team-form">{% csrf_token %}
+         {{ form|crispy }}
+        <button type="submit" class="w3-button w3-round w3-blue">Save</button>
+    </form>
+{% endblock %}

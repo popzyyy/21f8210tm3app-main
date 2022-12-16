@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+
+
+/* This is whats needed */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    </style>
+    <div style="background-color: #2a2a2a2a; padding: 10px;">
+        <h1>Technical Manual</h1>
+    </div>
+    <div style="margin-bottom: 10px">
+
+    </div>
+
+
+<iframe src="https://unomail-my.sharepoint.com/personal/groyce_unomaha_edu/_layouts/15/Doc.aspx?sourcedoc={e4eeb007-e002-4ee0-b388-8f60fa6d77f6}&amp;action=embedview" class="container" width=auto height=82% frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> document, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+
+{% endblock %}
+   

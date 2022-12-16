@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load auth_extras %}
+{% load static %}
+{% block content %}
+    <div style="background-color: #2a2a2a2a; padding: 10px;">
+        <h1>Matches List</h1>
+    </div>
+        <div style="margin-bottom: 10px">
+
+    </div>
+{% for match in matches %}
+    <button type="button" class="collapsible" style="text-align: center; font-size: 20px">
+        Match #{{ match.pk }}: {{match.home_team}} vs. {{ match.guest_team }}, {{ match.start_date }} {{ match.start_time }}</button>
+    <div class="collapsiblecontent">
+        <p>
+            Match #: {{ match.pk }}<br>
+            Home Team: {{match.home_team}}<br>
+            Guest Team: {{match.guest_team}}<br>
+            Field: {{match.field}}<br>
+            Referee: {{match.referee}}<br>
+            Date: {{match.start_time}}, {{ match.start_date }}<br>
+            Score: {{match.home_team_score}} - {{match.guest_team_score}}<br>
+            Notes: {{match.match_notes}}<br>
+            Goals Scored: {{match.match_players_goals_scored}}<br>
+                    {% if user.is_superuser or request.user|has_group:"Referee" %}
+                    <a href="{% url 'application:match_edit' pk=match.id %}" class="w3-button w3-round w3-orange">Edit</a>
+                    <a href="{% url 'application:match_delete' pk=match.pk%}"
+                        onclick="return confirm('Are you sure you want to delete Match {{ match.id }}?')"
+                                class="w3-button w3-round w3-red">Delete</a>
+                    {% endif %}
+        </p>
+    </div>
+{% endfor %}
+            <div style="margin-left: auto; margin-right: auto">
+                {% if user.is_superuser or request.user|has_group:"Referee"%}
+                <a href="{% url 'application:match_new' %}"><span
+                    class="w3-button w3-round w3-blue">Add Match</span></a>
+                {% endif %}
+        </div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+{% endblock %}

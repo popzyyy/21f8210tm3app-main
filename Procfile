@@ -1,0 +1,1 @@
+web: gunicorn tournamentapp.wsgi --log-file -
